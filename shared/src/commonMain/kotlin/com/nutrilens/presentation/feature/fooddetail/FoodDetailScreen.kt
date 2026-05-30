@@ -1,0 +1,188 @@
+package com.nutrilens.presentation.feature.fooddetail
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
+import com.nutrilens.domain.model.Food
+import com.nutrilens.domain.model.NutritionFeedback
+import com.nutrilens.presentation.components.LoadingOverlay
+import com.nutrilens.presentation.components.NutrientBar
+import com.nutrilens.presentation.components.NutritionTrafficLight
+import com.nutrilens.presentation.components.NutriScoreBadge
+import com.nutrilens.presentation.theme.*
+import org.koin.compose.viewmodel.koinViewModel
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FoodDetailScreen(
+    barcode: String,
+    navController: NavController,
+    viewModel: FoodDetailViewModel = koinViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(barcode) {
+        viewModel.loadFood(barcode)
+    }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Detalle nutricional") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = NutriBackground,
+                    titleContentColor = NutriOnBackground
+                )
+            )
+        },
+        containerColor = NutriBackground
+    ) { padding ->
+        Box(Modifier.fillMaxSize().padding(padding)) {
+            when (val state = uiState) {
+                is FoodDetailUiState.Loading -> LoadingOverlay("Cargando producto...")
+                is FoodDetailUiState.Error   -> ErrorContent(state.message)
+                is FoodDetailUiState.Success -> FoodDetailContent(state.food, state.feedbacks)
+            }
+        }
+    }
+}
+
+@Composable
+private fun FoodDetailContent(food: Food, feedbacks: List<NutritionFeedback>) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 20.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Imagen + info básica
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(NutriSurface),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("🥫", style = MaterialTheme.typography.displayLarge)
+            }
+
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text       = food.name,
+                    style      = MaterialTheme.typography.headlineMedium,
+                    color      = NutriOnBackground,
+                    fontWeight = FontWeight.Bold
+                )
+                food.brand?.let {
+                    Text(it, style = MaterialTheme.typography.bodyMedium, color = NutriSubtext)
+                }
+                food.quantity?.let {
+                    Text(it, style = MaterialTheme.typography.bodyMedium, color = NutriSubtext)
+                }
+                Spacer(Modifier.height(8.dp))
+                food.nutriScore?.let { NutriScoreBadge(it) }
+            }
+        }
+
+        // Calorías destacadas
+        Card(
+            shape  = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = NutriSurface)
+        ) {
+            Row(
+                modifier              = Modifier.fillMaxWidth().padding(20.dp),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                MacroChip("Calorías", "${food.nutrition.calories.toInt()}", "kcal", NutriGreen)
+                MacroChip("Proteínas", "${food.nutrition.proteins}", "g", AccentBlue)
+                MacroChip("Carbos", "${food.nutrition.carbohydrates}", "g", TrafficYellow)
+                MacroChip("Grasas", "${food.nutrition.fats}", "g", TrafficRed)
+            }
+        }
+
+        // Barras nutricionales
+        Card(
+            shape  = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = NutriSurface)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                Text("Valores por 100g", style = MaterialTheme.typography.titleMedium,
+                    color = NutriOnBackground, fontWeight = FontWeight.SemiBold)
+                with(food.nutrition) {
+                    NutrientBar("Proteínas", proteins, 30.0, "g", AccentBlue)
+                    NutrientBar("Carbohidratos", carbohydrates, 100.0, "g", TrafficYellow)
+                    NutrientBar("Azúcares", sugars, 50.0, "g", AccentPurple)
+                    NutrientBar("Grasas totales", fats, 35.0, "g", TrafficRed)
+                    NutrientBar("Grasas saturadas", saturatedFats, 20.0, "g", NutriScoreD)
+                    NutrientBar("Fibra", fiber, 10.0, "g", NutriGreen)
+                    NutrientBar("Sodio", sodium, 2.0, "g", NutriTeal)
+                }
+            }
+        }
+
+        // Semáforo nutricional (feedback personalizado)
+        if (feedbacks.isNotEmpty()) {
+            Card(
+                shape  = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = NutriSurface)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Análisis según tus metas", style = MaterialTheme.typography.titleMedium,
+                        color = NutriOnBackground, fontWeight = FontWeight.SemiBold)
+                    Spacer(Modifier.height(12.dp))
+                    NutritionTrafficLight(feedbacks = feedbacks)
+                }
+            }
+        }
+
+        Spacer(Modifier.height(8.dp))
+    }
+}
+
+@Composable
+private fun MacroChip(label: String, value: String, unit: String, color: Color) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(value, style = MaterialTheme.typography.titleLarge,
+            color = color, fontWeight = FontWeight.Bold)
+        Text(unit, style = MaterialTheme.typography.labelSmall, color = NutriSubtext)
+        Text(label, style = MaterialTheme.typography.labelSmall, color = NutriSubtext)
+    }
+}
+
+@Composable
+private fun ErrorContent(message: String) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("😕", style = MaterialTheme.typography.displayLarge)
+            Spacer(Modifier.height(12.dp))
+            Text(message, style = MaterialTheme.typography.bodyLarge, color = NutriSubtext)
+        }
+    }
+}

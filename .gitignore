@@ -1,0 +1,39 @@
+# ─── Android ─────────────────────────────────────────────────────────────────
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.hprof
+bin/
+gen/
+out/
+
+# ─── Gradle ──────────────────────────────────────────────────────────────────
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+!**/src/androidTest/**/build/
+
+# ─── Android Studio ──────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# ─── Keystore (NUNCA subir a GitHub) ─────────────────────────────────────────
+*.jks
+*.keystore
+release/
+
+# ─── Logs / temporales ───────────────────────────────────────────────────────
+*.log
+*.tmp
+Thumbs.db

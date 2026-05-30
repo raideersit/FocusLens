@@ -1,0 +1,79 @@
+-- Tabla de escaneos de alimentos
+CREATE TABLE FoodScanEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    barcode TEXT NOT NULL,
+    foodName TEXT NOT NULL,
+    brand TEXT,
+    imageUrl TEXT,
+    nutriScore TEXT,
+    calories REAL NOT NULL,
+    proteins REAL NOT NULL,
+    carbohydrates REAL NOT NULL,
+    fats REAL NOT NULL,
+    saturatedFats REAL NOT NULL,
+    sodium REAL NOT NULL,
+    fiber REAL NOT NULL,
+    sugars REAL NOT NULL,
+    scannedAt INTEGER NOT NULL,
+    portionGrams REAL NOT NULL,
+    notes TEXT
+);
+
+-- Tabla de usuarios
+CREATE TABLE UserEntity (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    passwordHash TEXT NOT NULL,
+    goalType TEXT NOT NULL,
+    dailyCaloriesTarget INTEGER NOT NULL,
+    dailyProteinTarget INTEGER NOT NULL,
+    dailyCarbsTarget INTEGER NOT NULL,
+    dailyFatTarget INTEGER NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+-- ── Queries de FoodScan ─────────────────────────────────────────────────────
+
+getAllScans:
+SELECT * FROM FoodScanEntity ORDER BY scannedAt DESC;
+
+getScanById:
+SELECT * FROM FoodScanEntity WHERE id = ?;
+
+insertScan:
+INSERT INTO FoodScanEntity(barcode, foodName, brand, imageUrl, nutriScore,
+    calories, proteins, carbohydrates, fats, saturatedFats, sodium, fiber, sugars,
+    scannedAt, portionGrams, notes)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getLastInsertId:
+SELECT last_insert_rowid();
+
+deleteScanById:
+DELETE FROM FoodScanEntity WHERE id = ?;
+
+updateNotes:
+UPDATE FoodScanEntity SET notes = ? WHERE id = ?;
+
+-- ── Queries de User ─────────────────────────────────────────────────────────
+
+getUserByEmail:
+SELECT * FROM UserEntity WHERE email = ? LIMIT 1;
+
+getUserById:
+SELECT * FROM UserEntity WHERE id = ? LIMIT 1;
+
+insertUser:
+INSERT INTO UserEntity(id, name, email, passwordHash, goalType,
+    dailyCaloriesTarget, dailyProteinTarget, dailyCarbsTarget, dailyFatTarget, createdAt)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateUser:
+UPDATE UserEntity SET name = ?, email = ?, passwordHash = ?,
+    goalType = ?, dailyCaloriesTarget = ?, dailyProteinTarget = ?,
+    dailyCarbsTarget = ?, dailyFatTarget = ?
+WHERE id = ?;
+
+deleteUser:
+DELETE FROM UserEntity WHERE id = ?;
