@@ -1,7 +1,7 @@
 import SwiftUI
 import shared
 
-/// Punto de entrada de la app iOS de NutriLens.
+/// Punto de entrada de la app iOS de FocusLens.
 /// Usa Compose Multiplatform renderizado dentro de un UIViewController.
 @main
 struct iOSApp: App {

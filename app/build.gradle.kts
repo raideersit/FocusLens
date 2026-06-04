@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.nutrilens"
+    namespace = "com.focuslens"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.nutrilens"
+        applicationId = "com.focuslens"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

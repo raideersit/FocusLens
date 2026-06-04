@@ -115,7 +115,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.nutrilens.shared"
+    namespace = "com.focuslens.shared"
     compileSdk = 35
 
     defaultConfig {
@@ -131,8 +131,8 @@ android {
 // ── SQLDelight configuration ────────────────────────────────────────────────
 sqldelight {
     databases {
-        create("NutriLensDb") {
-            packageName.set("com.nutrilens.db")
+        create("FocusLensDb") {
+            packageName.set("com.focuslens.db")
             srcDirs("src/commonMain/sqldelight")
         }
     }

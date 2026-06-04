@@ -1,12 +1,12 @@
-# 🥗 NutriLens
+# 🥗 FocusLens
 
 Aplicación multiplataforma (Android & iOS) para escanear alimentos y obtener información nutricional detallada con análisis personalizado según las metas del usuario.
 
 ---
 
-## ¿Qué es NutriLens?
+## ¿Qué es FocusLens?
 
-NutriLens permite a cualquier persona escanear el código de barras de un alimento y recibir al instante su información nutricional completa, junto con un análisis adaptado al objetivo personal del usuario (perder peso, ganar músculo, alimentación balanceada, etc.).
+FocusLens permite a cualquier persona escanear el código de barras de un alimento y recibir al instante su información nutricional completa, junto con un análisis adaptado al objetivo personal del usuario (perder peso, ganar músculo, alimentación balanceada, etc.).
 
 La idea nació de la necesidad de tomar decisiones alimenticias más informadas de forma rápida y sin tener que buscar manualmente en tablas nutricionales.
 
@@ -66,13 +66,13 @@ La aplicación ha sido reescrita utilizando **Kotlin Multiplatform (KMP)** y **C
 El código está dividido en tres módulos principales:
 
 ```
-NutriLens-AppAndroid-main/
+FocusLens-AppAndroid-main/
 ├── shared/                 # Código compartido (KMP)
 │   ├── src/commonMain/     # Lógica de negocio, Red, UI (Compose), DI
 │   ├── src/androidMain/    # Implementaciones nativas para Android (CameraX)
 │   └── src/iosMain/        # Implementaciones nativas para iOS (AVFoundation)
 ├── app/                    # Aplicación Android (App Host)
-│   └── src/main/           # MainActivity y NutriLensApplication
+│   └── src/main/           # MainActivity y FocusLensApplication
 └── iosApp/                 # Aplicación iOS (App Host)
     └── iosApp/             # iOSApp.swift y configuración de Xcode
 ```

@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NutriLens"
+rootProject.name = "FocusLens"
 include(":app")
 include(":shared")

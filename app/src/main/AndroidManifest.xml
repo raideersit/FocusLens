@@ -7,19 +7,19 @@
     <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
-        android:name=".NutriLensApplication"
+        android:name=".FocusLensApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher_foreground"
         android:label="FocusLens"
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NutriLens"
+        android:theme="@style/Theme.FocusLens"
         android:usesCleartextTraffic="false">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.NutriLens">
+            android:theme="@style/Theme.FocusLens">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
