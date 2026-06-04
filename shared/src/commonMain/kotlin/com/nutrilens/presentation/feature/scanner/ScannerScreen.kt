@@ -1,6 +1,7 @@
 package com.nutrilens.presentation.feature.scanner
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -13,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -35,6 +37,27 @@ fun ScannerScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+
+    // ── Animación pulsante para el marco de escaneo ──────────────────────────
+    val infiniteTransition = rememberInfiniteTransition(label = "scanPulse")
+    val pulseAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.5f,
+        targetValue  = 1f,
+        animationSpec = infiniteRepeatable(
+            animation  = tween(1200, easing = EaseInOutCubic),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulseAlpha"
+    )
+    val pulseScale by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue  = 1.03f,
+        animationSpec = infiniteRepeatable(
+            animation  = tween(1200, easing = EaseInOutCubic),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulseScale"
+    )
 
     // ── Observar eventos únicos ──────────────────────────────────────────────
     LaunchedEffect(Unit) {
@@ -71,12 +94,20 @@ fun ScannerScreen(
                 modifier          = Modifier.fillMaxSize()
             )
 
-            // ── Header overlay ────────────────────────────────────────────────
-            Column(
+            // ── Header overlay con gradiente ─────────────────────────────────
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.TopCenter)
-                    .background(NutriBackground.copy(alpha = 0.7f))
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                NutriBackground.copy(alpha = 0.85f),
+                                NutriBackground.copy(alpha = 0.4f),
+                                NutriBackground.copy(alpha = 0f)
+                            )
+                        )
+                    )
                     .padding(horizontal = 20.dp, vertical = 16.dp)
             ) {
                 Row(
@@ -85,12 +116,12 @@ fun ScannerScreen(
                     verticalAlignment     = Alignment.CenterVertically
                 ) {
                     Text(
-                        text       = "NutriLens",
+                        text       = "FocusLens",
                         style      = MaterialTheme.typography.headlineMedium,
                         color      = NutriGreen,
                         fontWeight = FontWeight.Bold
                     )
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         IconButton(onClick = { navController.navigate(Screen.History.route) }) {
                             Icon(Icons.Default.History, contentDescription = "Historial", tint = NutriOnBackground)
                         }
@@ -101,17 +132,22 @@ fun ScannerScreen(
                 }
             }
 
-            // ── Marco de escaneo en el centro ────────────────────────────────
+            // ── Marco de escaneo pulsante en el centro ───────────────────────
             Box(
                 modifier         = Modifier.align(Alignment.Center),
                 contentAlignment = Alignment.Center
             ) {
                 Box(
                     modifier = Modifier
-                        .size(240.dp)
+                        .size((240 * pulseScale).dp)
                         .border(
                             width = 3.dp,
-                            color = NutriGreen,
+                            brush = Brush.linearGradient(
+                                colors = listOf(
+                                    NutriGreen.copy(alpha = pulseAlpha),
+                                    NutriTeal.copy(alpha = pulseAlpha)
+                                )
+                            ),
                             shape = RoundedCornerShape(24.dp)
                         )
                 )
@@ -122,17 +158,17 @@ fun ScannerScreen(
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .offset(y = 52.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(NutriBackground.copy(alpha = 0.7f))
-                        .padding(horizontal = 12.dp, vertical = 6.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(NutriBackground.copy(alpha = 0.8f))
+                        .padding(horizontal = 14.dp, vertical = 8.dp)
                 )
             }
 
             // ── Loading overlay encima de todo ────────────────────────────────
             AnimatedVisibility(
                 visible = uiState is ScannerUiState.Loading,
-                enter   = fadeIn(),
-                exit    = fadeOut()
+                enter   = fadeIn(tween(300)),
+                exit    = fadeOut(tween(300))
             ) {
                 LoadingOverlay()
             }

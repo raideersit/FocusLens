@@ -33,18 +33,18 @@ fun NutrientBar(
 
     var started by remember { mutableStateOf(false) }
     val animatedFraction by animateFloatAsState(
-        targetValue  = if (started) fraction else 0f,
-        animationSpec = tween(durationMillis = 800),
-        label        = "nutrientBarAnim"
+        targetValue   = if (started) fraction else 0f,
+        animationSpec = tween(durationMillis = 900, easing = androidx.compose.animation.core.EaseOutCubic),
+        label         = "nutrientBarAnim"
     )
 
     LaunchedEffect(Unit) { started = true }
 
     Column(modifier = modifier) {
         Row(
-            modifier            = Modifier.fillMaxWidth(),
+            modifier              = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment   = Alignment.CenterVertically
+            verticalAlignment     = Alignment.CenterVertically
         ) {
             Text(
                 text  = label,

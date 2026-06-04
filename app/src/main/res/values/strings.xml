@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NutriLens</string>
+    <string name="app_name">FocusLens</string>
     <string name="scanner_hint">Apunta al código de barras del alimento</string>
-    <string name="permission_camera_rationale">NutriLens necesita acceso a la cámara para escanear códigos de barras</string>
+    <string name="permission_camera_rationale">FocusLens necesita acceso a la cámara para escanear códigos de barras</string>
     <string name="error_product_not_found">Producto no encontrado en la base de datos</string>
     <string name="error_no_internet">Sin conexión a internet</string>
     <string name="history_empty">Sin historial todavía</string>

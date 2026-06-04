@@ -2,34 +2,44 @@ package com.nutrilens.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ── Paleta principal ─────────────────────────────────────────────────────────
-val NutriGreen        = Color(0xFF2ECC71)
-val NutriGreenDark    = Color(0xFF27AE60)
-val NutriGreenLight   = Color(0xFFA8E6CF)
+// ── Paleta principal (Remaster) ──────────────────────────────────────────────
+val NutriGreen        = Color(0xFF00C9A7)   // Esmeralda vibrante
+val NutriGreenDark    = Color(0xFF00897B)   // Esmeralda profundo
+val NutriGreenLight   = Color(0xFF5EFCE8)   // Esmeralda claro / glow
 
-val NutriTeal         = Color(0xFF1ABC9C)
-val NutriTealDark     = Color(0xFF16A085)
+val NutriTeal         = Color(0xFF26C6DA)   // Cyan vibrante
+val NutriTealDark     = Color(0xFF0097A7)   // Cyan profundo
 
-val NutriBackground   = Color(0xFF0F1923)   // Fondo oscuro principal
-val NutriSurface      = Color(0xFF1A2634)   // Tarjetas / superficies
-val NutriSurface2     = Color(0xFF243447)   // Superficies secundarias
+// ── Fondos (Deep Night) ──────────────────────────────────────────────────────
+val NutriBackground   = Color(0xFF0A0E1A)   // Fondo principal — azul noche profundo
+val NutriSurface      = Color(0xFF1B2238)   // Tarjetas / superficies
+val NutriSurface2     = Color(0xFF242D47)   // Superficies secundarias / inputs
 
-val NutriOnBackground = Color(0xFFF0F4F8)
-val NutriOnSurface    = Color(0xFFCDD5DF)
-val NutriSubtext      = Color(0xFF718096)
+// ── Texto ────────────────────────────────────────────────────────────────────
+val NutriOnBackground = Color(0xFFF5F5F7)   // Blanco cálido
+val NutriOnSurface    = Color(0xFFCBD5E1)   // Gris plata claro
+val NutriSubtext      = Color(0xFF7B8BA5)   // Subtexto / placeholders
 
 // ── Semáforo nutricional ─────────────────────────────────────────────────────
-val TrafficGreen      = Color(0xFF2ECC71)
-val TrafficYellow     = Color(0xFFF1C40F)
-val TrafficRed        = Color(0xFFE74C3C)
+val TrafficGreen      = Color(0xFF22C55E)
+val TrafficYellow     = Color(0xFFFACC15)
+val TrafficRed        = Color(0xFFEF4444)
 
 // ── NutriScore (A–E) ─────────────────────────────────────────────────────────
-val NutriScoreA       = Color(0xFF1A9B4B)
-val NutriScoreB       = Color(0xFF77C132)
-val NutriScoreC       = Color(0xFFF5A623)
-val NutriScoreD       = Color(0xFFE8521A)
-val NutriScoreE       = Color(0xFFCC1A1A)
+val NutriScoreA       = Color(0xFF16A34A)
+val NutriScoreB       = Color(0xFF65A30D)
+val NutriScoreC       = Color(0xFFEAB308)
+val NutriScoreD       = Color(0xFFEA580C)
+val NutriScoreE       = Color(0xFFDC2626)
 
-// ── Acentos ──────────────────────────────────────────────────────────────────
-val AccentBlue        = Color(0xFF3498DB)
-val AccentPurple      = Color(0xFF9B59B6)
+// ── Acentos premium ─────────────────────────────────────────────────────────
+val AccentAmber       = Color(0xFFFFB74D)   // Dorado / ámbar
+val AccentCoral       = Color(0xFFFF7043)   // Coral cálido
+val AccentBlue        = Color(0xFF42A5F5)   // Azul brillante
+val AccentPurple      = Color(0xFFAB47BC)   // Púrpura vibrante
+val AccentCyan        = Color(0xFF26C6DA)   // Cyan
+
+// ── Gradientes (colores auxiliares) ──────────────────────────────────────────
+val GradientStart     = Color(0xFF00C9A7)   // Esmeralda
+val GradientEnd       = Color(0xFF26C6DA)   // Cyan
+val GradientGold      = Color(0xFFFFB74D)   // Ámbar para acentos

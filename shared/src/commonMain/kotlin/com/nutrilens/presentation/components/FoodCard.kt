@@ -1,14 +1,17 @@
 package com.nutrilens.presentation.components
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -22,7 +25,7 @@ import kotlinx.datetime.toLocalDateTime
 /**
  * Tarjeta de historial de escaneo.
  * Muestra nombre, marca, calorías y fecha del escaneo.
- * La imagen se reemplaza con un emoji placeholder (compatible KMP).
+ * Efecto de escala al presionar para feedback táctil premium.
  */
 @Composable
 fun FoodCard(
@@ -31,17 +34,29 @@ fun FoodCard(
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var isPressed by remember { mutableStateOf(false) }
+    val scale by animateFloatAsState(
+        targetValue   = if (isPressed) 0.97f else 1f,
+        animationSpec = tween(150),
+        label         = "cardScale"
+    )
+
     Card(
         modifier  = modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
+            .scale(scale)
+            .clickable(
+                onClick = {
+                    onClick()
+                }
+            ),
         shape     = RoundedCornerShape(16.dp),
         colors    = CardDefaults.cardColors(containerColor = NutriSurface),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier  = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment     = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             // Placeholder de imagen (KMP-compatible, sin Coil)
@@ -61,18 +76,18 @@ fun FoodCard(
             // Info del producto
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text     = scan.food.name,
-                    style    = MaterialTheme.typography.titleMedium,
-                    color    = NutriOnBackground,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    text       = scan.food.name,
+                    style      = MaterialTheme.typography.titleMedium,
+                    color      = NutriOnBackground,
+                    maxLines   = 1,
+                    overflow   = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.SemiBold
                 )
                 scan.food.brand?.let {
                     Text(
-                        text  = it,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = NutriSubtext,
+                        text     = it,
+                        style    = MaterialTheme.typography.bodyMedium,
+                        color    = NutriSubtext,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -80,7 +95,7 @@ fun FoodCard(
                 Spacer(Modifier.height(4.dp))
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment     = Alignment.CenterVertically
                 ) {
                     Text(
                         text       = "${scan.food.nutrition.calories.toInt()} kcal",
@@ -117,7 +132,7 @@ fun NutriScoreBadge(score: String, modifier: Modifier = Modifier) {
     Box(
         modifier          = modifier
             .size(36.dp)
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(color),
         contentAlignment  = Alignment.Center
     ) {

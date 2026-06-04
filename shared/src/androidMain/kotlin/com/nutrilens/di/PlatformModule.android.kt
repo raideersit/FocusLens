@@ -2,6 +2,7 @@ package com.nutrilens.di
 
 import com.nutrilens.data.local.DatabaseDriverFactory
 import com.nutrilens.data.local.createDataStore
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
@@ -11,5 +12,5 @@ import org.koin.dsl.module
 val androidModule = module {
     single { DatabaseDriverFactory(get()) }
     single { DatabaseDriverFactory(get()).createDriver() }
-    single { createDataStore(get()) }
+    single { createDataStore(context = androidContext()) }
 }

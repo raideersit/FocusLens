@@ -5,51 +5,60 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Usa la fuente del sistema con pesos diferenciados.
+// Tipografía con letter-spacing refinado para un look premium.
 val NutriTypography = Typography(
     displayLarge = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize   = 32.sp,
-        lineHeight = 40.sp
+        fontWeight    = FontWeight.Bold,
+        fontSize      = 32.sp,
+        lineHeight    = 40.sp,
+        letterSpacing = (-0.5).sp
     ),
     headlineLarge = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize   = 24.sp,
-        lineHeight = 32.sp
+        fontWeight    = FontWeight.SemiBold,
+        fontSize      = 24.sp,
+        lineHeight    = 32.sp,
+        letterSpacing = (-0.25).sp
     ),
     headlineMedium = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize   = 20.sp,
-        lineHeight = 28.sp
+        fontWeight    = FontWeight.SemiBold,
+        fontSize      = 20.sp,
+        lineHeight    = 28.sp,
+        letterSpacing = (-0.15).sp
     ),
     titleLarge = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize   = 18.sp,
-        lineHeight = 26.sp
+        fontWeight    = FontWeight.Medium,
+        fontSize      = 18.sp,
+        lineHeight    = 26.sp,
+        letterSpacing = 0.sp
     ),
     titleMedium = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize   = 16.sp,
-        lineHeight = 24.sp
+        fontWeight    = FontWeight.Medium,
+        fontSize      = 16.sp,
+        lineHeight    = 24.sp,
+        letterSpacing = 0.1.sp
     ),
     bodyLarge = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize   = 16.sp,
-        lineHeight = 24.sp
+        fontWeight    = FontWeight.Normal,
+        fontSize      = 16.sp,
+        lineHeight    = 24.sp,
+        letterSpacing = 0.15.sp
     ),
     bodyMedium = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize   = 14.sp,
-        lineHeight = 20.sp
+        fontWeight    = FontWeight.Normal,
+        fontSize      = 14.sp,
+        lineHeight    = 20.sp,
+        letterSpacing = 0.15.sp
     ),
     labelLarge = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize   = 14.sp,
-        lineHeight = 20.sp
+        fontWeight    = FontWeight.SemiBold,
+        fontSize      = 14.sp,
+        lineHeight    = 20.sp,
+        letterSpacing = 0.1.sp
     ),
     labelSmall = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize   = 11.sp,
-        lineHeight = 16.sp
+        fontWeight    = FontWeight.Medium,
+        fontSize      = 11.sp,
+        lineHeight    = 16.sp,
+        letterSpacing = 0.5.sp
     )
 )
