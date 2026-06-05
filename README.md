@@ -1,4 +1,4 @@
-Entrega 1 Proyecto: Alumno: Alvaro Uirbe
+Entrega 1 Proyecto: Alumno: Alvaro Uribe
 
 # 🥗 FocusLens
 
