@@ -1,3 +1,5 @@
+Entrega 1 Proyecto: Alumno: Alvaro Uirbe
+
 # 🥗 FocusLens
 
 Aplicación multiplataforma (Android & iOS) para escanear alimentos y obtener información nutricional detallada con análisis personalizado según las metas del usuario.
