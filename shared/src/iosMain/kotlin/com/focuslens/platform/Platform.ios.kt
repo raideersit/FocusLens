@@ -26,3 +26,6 @@ actual fun sha256(input: String): String {
     }
     return digest.joinToString("") { it.toString(16).padStart(2, '0') }
 }
+
+// En el simulador iOS, localhost apunta a la máquina anfitriona.
+actual fun serverBaseUrl(): String = "http://localhost:8080"

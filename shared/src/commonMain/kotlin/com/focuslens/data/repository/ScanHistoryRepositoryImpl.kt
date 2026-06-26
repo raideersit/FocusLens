@@ -20,7 +20,7 @@ class ScanHistoryRepositoryImpl(
     private val db: FocusLensDb
 ) : ScanHistoryRepository {
 
-    private val queries = db.nutriLensQueries
+    private val queries = db.focusLensQueries
 
     override fun getAllScans(): Flow<List<FoodScan>> =
         queries.getAllScans()

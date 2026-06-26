@@ -14,7 +14,7 @@
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.FocusLens"
-        android:usesCleartextTraffic="false">
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".MainActivity"

@@ -1,0 +1,66 @@
+<svg width="940" height="610" viewBox="0 0 940 610" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
+  <rect x="0" y="0" width="940" height="610" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1A9B4B"/>
+    </marker>
+    <marker id="arrowback" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#999"/>
+    </marker>
+  </defs>
+
+  <text x="470" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">FocusLens — Arquitectura y flujo de datos</text>
+  <text x="470" y="56" text-anchor="middle" font-size="12.5" fill="#888">App (KMP)  &#8594;  Servidor LOCAL Ktor (:8080)  &#8594;  Neon (PostgreSQL, en la nube)</text>
+
+  <rect x="24" y="80" width="236" height="478" rx="14" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="142" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">App (celular)</text>
+  <text x="142" y="128" text-anchor="middle" font-size="11" fill="#888">Kotlin Multiplatform</text>
+  <g font-size="13" fill="#1a1a1a" text-anchor="middle">
+    <rect x="48" y="144" width="188" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="142" y="172">UI &#183; Compose</text>
+    <rect x="48" y="206" width="188" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="142" y="234">ViewModel</text>
+    <rect x="48" y="268" width="188" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="142" y="296">Caso de uso (UseCase)</text>
+    <rect x="48" y="330" width="188" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="142" y="358">Repositorio (interfaz)</text>
+  </g>
+  <g fill="#999"><path d="M142,191 l-5,-8 l10,0 z"/><path d="M142,253 l-5,-8 l10,0 z"/><path d="M142,315 l-5,-8 l10,0 z"/></g>
+  <rect x="48" y="404" width="188" height="32" rx="16" fill="none" stroke="#1A9B4B" stroke-dasharray="3 3"/>
+  <text x="142" y="424" text-anchor="middle" font-size="11.5" fill="#1A9B4B">Clean Architecture + MVVM</text>
+
+  <rect x="350" y="80" width="240" height="478" rx="14" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="470" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">Backend Ktor</text>
+  <text x="470" y="128" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1A9B4B">Servidor LOCAL &#183; localhost:8080</text>
+  <g font-size="13" fill="#1a1a1a" text-anchor="middle">
+    <rect x="374" y="144" width="192" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="470" y="172">Ruta (endpoint)</text>
+    <rect x="374" y="206" width="192" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="470" y="234">Servicio</text>
+    <rect x="374" y="268" width="192" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="470" y="296">Repositorio</text>
+    <rect x="374" y="330" width="192" height="46" rx="9" fill="#f5f5f5" stroke="#cccccc"/><text x="470" y="358">Modelo / Tabla</text>
+  </g>
+  <g fill="#999"><path d="M470,191 l-5,-8 l10,0 z"/><path d="M470,253 l-5,-8 l10,0 z"/><path d="M470,315 l-5,-8 l10,0 z"/></g>
+  <rect x="374" y="402" width="192" height="34" rx="9" fill="#eafaf0" stroke="#1A9B4B"/>
+  <text x="470" y="424" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1A9B4B">BCrypt + JWT</text>
+
+  <rect x="680" y="80" width="236" height="478" rx="14" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="798" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#1a1a1a">Neon</text>
+  <text x="798" y="128" text-anchor="middle" font-size="11" fill="#888">PostgreSQL serverless (nube)</text>
+  <rect x="704" y="156" width="188" height="64" rx="9" fill="#f5f5f5" stroke="#cccccc"/>
+  <text x="798" y="182" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">users</text>
+  <text x="798" y="203" text-anchor="middle" font-size="9.5" fill="#555">id (UUID) &#183; email &#183; password_hash</text>
+  <rect x="704" y="234" width="188" height="64" rx="9" fill="#f5f5f5" stroke="#cccccc"/>
+  <text x="798" y="260" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">food_scans</text>
+  <text x="798" y="281" text-anchor="middle" font-size="9.5" fill="#555">user_id (FK) &#8594; users.id</text>
+  <rect x="704" y="338" width="188" height="56" rx="9" fill="none" stroke="#1A9B4B" stroke-dasharray="3 3"/>
+  <text x="798" y="362" text-anchor="middle" font-size="11.5" fill="#1A9B4B">Las tablas se crean aquí,</text>
+  <text x="798" y="379" text-anchor="middle" font-size="11.5" fill="#1A9B4B">en Neon (no en el teléfono)</text>
+
+  <line x1="262" y1="270" x2="346" y2="270" stroke="#1A9B4B" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="304" y="258" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a1a">HTTP / JSON</text>
+  <text x="304" y="288" text-anchor="middle" font-size="10" fill="#555">+ token JWT</text>
+  <line x1="592" y1="270" x2="676" y2="270" stroke="#1A9B4B" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="634" y="258" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a1a">SQL (Exposed)</text>
+  <text x="634" y="288" text-anchor="middle" font-size="10" fill="#555">INSERT / SELECT</text>
+
+  <line x1="676" y1="480" x2="592" y2="480" stroke="#999" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arrowback)"/>
+  <line x1="346" y1="480" x2="262" y2="480" stroke="#999" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arrowback)"/>
+  <text x="470" y="476" text-anchor="middle" font-size="10.5" fill="#888">respuesta (JSON) de vuelta a la app</text>
+
+  <text x="470" y="596" text-anchor="middle" font-size="11" fill="#555">Cada flecha verde es una petición; la app nunca toca la base de datos directamente — siempre pasa por el backend.</text>
+</svg>

@@ -22,7 +22,7 @@ class UserRepositoryImpl(
     private val sessionManager: SessionManager
 ) : AuthRepository, UserProfileRepository {
 
-    private val queries = db.nutriLensQueries
+    private val queries = db.focusLensQueries
 
     // ── AuthRepository ────────────────────────────────────────────────────────
 

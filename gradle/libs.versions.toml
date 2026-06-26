@@ -14,6 +14,14 @@ kotlinxSerialization = "1.7.3"
 kotlinxCoroutines = "1.9.0"
 kotlinxDatetime = "0.6.1"
 
+# Backend (módulo :server)
+exposed = "0.57.0"
+postgresql = "42.7.4"
+hikari = "6.2.1"
+logback = "1.5.12"
+jbcrypt = "0.4"
+dotenv = "6.4.1"
+
 # Android-specific
 activityCompose = "1.9.3"
 lifecycleViewmodelCompose = "2.8.7"
@@ -92,6 +100,30 @@ androidx-camera-view = { group = "androidx.camera", name = "camera-view", versio
 # Coil (Android only - for image loading)
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
+# ─── Backend / Server (Ktor JVM) ─────────────────────────────────────────────
+ktor-server-core = { group = "io.ktor", name = "ktor-server-core", version.ref = "ktor" }
+ktor-server-netty = { group = "io.ktor", name = "ktor-server-netty", version.ref = "ktor" }
+ktor-server-content-negotiation = { group = "io.ktor", name = "ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-auth = { group = "io.ktor", name = "ktor-server-auth", version.ref = "ktor" }
+ktor-server-auth-jwt = { group = "io.ktor", name = "ktor-server-auth-jwt", version.ref = "ktor" }
+ktor-server-status-pages = { group = "io.ktor", name = "ktor-server-status-pages", version.ref = "ktor" }
+ktor-server-call-logging = { group = "io.ktor", name = "ktor-server-call-logging", version.ref = "ktor" }
+ktor-server-cors = { group = "io.ktor", name = "ktor-server-cors", version.ref = "ktor" }
+ktor-server-default-headers = { group = "io.ktor", name = "ktor-server-default-headers", version.ref = "ktor" }
+ktor-server-tests = { group = "io.ktor", name = "ktor-server-test-host", version.ref = "ktor" }
+
+# Exposed (ORM/SQL framework para PostgreSQL)
+exposed-core = { group = "org.jetbrains.exposed", name = "exposed-core", version.ref = "exposed" }
+exposed-jdbc = { group = "org.jetbrains.exposed", name = "exposed-jdbc", version.ref = "exposed" }
+exposed-java-time = { group = "org.jetbrains.exposed", name = "exposed-java-time", version.ref = "exposed" }
+
+# Driver PostgreSQL + pool de conexiones + logging + hashing + .env
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+hikaricp = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikari" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
+dotenv-kotlin = { group = "io.github.cdimascio", name = "dotenv-kotlin", version.ref = "dotenv" }
+
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
@@ -107,3 +139,5 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }

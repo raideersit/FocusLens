@@ -1,11 +1,12 @@
 package com.focuslens.di
 
 import com.focuslens.data.local.SessionManager
+import com.focuslens.data.remote.api.FocusLensApi
 import com.focuslens.data.remote.api.OpenFoodFactsApi
 import com.focuslens.data.remote.mapper.FoodDtoMapper
 import com.focuslens.data.repository.FoodRepositoryImpl
-import com.focuslens.data.repository.ScanHistoryRepositoryImpl
-import com.focuslens.data.repository.UserRepositoryImpl
+import com.focuslens.data.repository.RemoteAuthRepository
+import com.focuslens.data.repository.RemoteScanHistoryRepository
 import com.focuslens.db.FocusLensDb
 import com.focuslens.domain.repository.AuthRepository
 import com.focuslens.domain.repository.FoodRepository
@@ -64,7 +65,8 @@ val sharedModule = module {
     }
 
     // ── API ─────────────────────────────────────────────────────────────────
-    single { OpenFoodFactsApi(get()) }
+    single { OpenFoodFactsApi(get()) }          // Datos nutricionales (OpenFoodFacts)
+    single { FocusLensApi(get(), get()) }       // Backend propio (auth, perfil, historial)
     single { FoodDtoMapper() }
 
     // ── Base de datos ───────────────────────────────────────────────────────
@@ -74,11 +76,14 @@ val sharedModule = module {
     singleOf(::SessionManager)
 
     // ── Repositorios ────────────────────────────────────────────────────────
+    // Alimentos: siguen viniendo de OpenFoodFacts (escáner).
     single<FoodRepository> { FoodRepositoryImpl(get(), get()) }
-    single<ScanHistoryRepository> { ScanHistoryRepositoryImpl(get()) }
-    single { UserRepositoryImpl(get(), get()) }
-    single<AuthRepository> { get<UserRepositoryImpl>() }
-    single<UserProfileRepository> { get<UserRepositoryImpl>() }
+
+    // Auth + perfil + historial: ahora contra el backend propio (Ktor + Neon).
+    single { RemoteAuthRepository(get(), get()) }
+    single<AuthRepository> { get<RemoteAuthRepository>() }
+    single<UserProfileRepository> { get<RemoteAuthRepository>() }
+    single<ScanHistoryRepository> { RemoteScanHistoryRepository(get()) }
 
     // ── Use Cases ───────────────────────────────────────────────────────────
     factoryOf(::GetFoodByBarcodeUseCase)
