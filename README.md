@@ -17,7 +17,7 @@ La idea nació de la necesidad de tomar decisiones alimenticias más informadas 
 ## 📌 Resumen para la evaluación (TL;DR)
 
 El proyecto tiene **dos partes**: la **app cliente** (KMP) y, desde la Entrega 2, un **backend propio**.
-
+> **Arquitectura en capas en ambas partes** (cada capa con una sola responsabilidad): la **app** usa **Clean Architecture + MVVM** (`Presentation → Domain → Data`), y el **backend** usa la cadena **`Ruta → Servicio → Repositorio → Modelo`**. *Clean Architecture es, justamente, una arquitectura por capas* — no son cosas distintas.
 - **¿Qué arquitectura usa la app?** → **Clean Architecture + MVVM**, separada en tres capas (`domain`, `data`, `presentation`) con Koin. Ver [Arquitectura de la app](#-arquitectura-de-la-app).
 - **¿Hay backend propio?** → **Sí (Entrega 2).** Módulo [`:server`](server/) en **Ktor (Kotlin)** con arquitectura por capas **Modelo → DTO → Repositorio → Servicio → Ruta**. Ver [Backend](#-backend-entrega-2).
 - **¿Usa Neon / PostgreSQL?** → **Sí.** El backend persiste en **Neon (PostgreSQL serverless)** mediante **Exposed + HikariCP**. Las tablas (`users`, `food_scans`) se crean automáticamente al arrancar.
