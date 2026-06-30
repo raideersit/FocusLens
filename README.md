@@ -1,6 +1,6 @@
 Entrega 2 Proyecto · Alumno: Alvaro Uribe
 
-# 🥗 FocusLens
+# 🥗 FocusLens (Aplicaciones en Kotlin)
 
 Aplicación multiplataforma (Android & iOS) para escanear alimentos y obtener información nutricional detallada con análisis personalizado según las metas del usuario, respaldada por un **backend propio (Ktor + PostgreSQL/Neon)** con autenticación **JWT**.
 
