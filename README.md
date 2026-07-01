@@ -4,6 +4,8 @@ Entrega 2 Proyecto · Alumno: Alvaro Uribe
 
 Aplicación multiplataforma (Android & iOS) para escanear alimentos y obtener información nutricional detallada con análisis personalizado según las metas del usuario, respaldada por un **backend propio (Ktor + PostgreSQL/Neon)** con autenticación **JWT**.
 
+> 📦 **Este repositorio contiene solo la app cliente (frontend).** El **backend** (Ktor + Neon) vive en un repositorio separado: **[FocusLens-Backend](https://github.com/raideersit/FocusLens-Backend)**. Este README documenta también el backend para dar contexto de la arquitectura completa, pero su código está en el otro repo.
+
 ---
 
 ## ¿Qué es FocusLens?
@@ -19,7 +21,7 @@ La idea nació de la necesidad de tomar decisiones alimenticias más informadas 
 El proyecto tiene **dos partes**: la **app cliente** (KMP) y, desde la Entrega 2, un **backend propio**.
 > **Arquitectura en capas en ambas partes** (cada capa con una sola responsabilidad): la **app** usa **Clean Architecture + MVVM** (`Presentation → Domain → Data`), y el **backend** usa la cadena **`Ruta → Servicio → Repositorio → Modelo`**. *Clean Architecture es, justamente, una arquitectura por capas* — no son cosas distintas.
 - **¿Qué arquitectura usa la app?** → **Clean Architecture + MVVM**, separada en tres capas (`domain`, `data`, `presentation`) con Koin. Ver [Arquitectura de la app](#-arquitectura-de-la-app).
-- **¿Hay backend propio?** → **Sí .** Módulo [`:server`](server/) en **Ktor (Kotlin)** con arquitectura por capas **Modelo → DTO → Repositorio → Servicio → Ruta**. Ver [Backend](#-backend-entrega-2).
+- **¿Hay backend propio?** → **Sí .** En **Ktor (Kotlin)** con arquitectura por capas **Modelo → DTO → Repositorio → Servicio → Ruta**, en el repo separado **[FocusLens-Backend](https://github.com/raideersit/FocusLens-Backend)**. Ver [Backend](#-backend-entrega-2).
 - **¿Usa Neon / PostgreSQL?** → **Sí.** El backend persiste en **Neon (PostgreSQL serverless)** mediante **Exposed + HikariCP**. Las tablas (`users`, `food_scans`) se crean automáticamente al arrancar.
 - **¿Seguridad?** → **Password hashing con BCrypt** + **JWT** (flujo `TokenRequest` → validación → `TokenResponse`). Rutas protegidas con `Authorization: Bearer <token>`.
 - **¿Y los datos nutricionales?** → Se obtienen de la API pública **OpenFoodFacts** (HTTPS, solo lectura, sin API key).

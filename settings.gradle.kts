@@ -22,4 +22,3 @@ dependencyResolutionManagement {
 rootProject.name = "FocusLens"
 include(":app")
 include(":shared")
-include(":server")
